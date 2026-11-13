@@ -157,7 +157,8 @@ def interactive_districts(districts, snapshot):
     )
     fig.update_yaxes(rangemode="tozero")
     fig.add_annotation(text=f"Source: Inside Airbnb, Istanbul snapshot {snapshot}",
-                       xref="paper", yref="paper", x=0, y=-0.15, showarrow=False, font={"size": 10})
+                                              xref="paper", yref="paper", x=0, y=-0.28, showarrow=False, font={"size": 10})
+    fig.update_layout(margin={"b": 110})
     fig.write_html(VISUALS / "interactive_districts.html", include_plotlyjs="cdn")
 
 
