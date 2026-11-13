@@ -7,3 +7,4 @@ bokeh>=3.4
 folium>=0.16
 requests>=2.31
 jupyter>=1.0
+scipy>=1.11
