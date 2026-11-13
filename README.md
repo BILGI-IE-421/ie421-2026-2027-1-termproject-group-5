@@ -1,46 +1,38 @@
-# IE 421 - Data Science for Engineers Term Project
+# Data card
 
-## Airbnb in Istanbul: Comparing the Districts
+> Draft prepared with AI assistance (see `AI_USAGE.md`); the numbers below come from running the scripts on the real files. The course requires the data card to be in our own words: **TO DO** — reread and rewrite each field ourselves before submission.
 
-Short-term rentals shape how a city is lived in: they take homes away from long-term residents and bring visitors into residential streets. Under the theme "Cities We Live In: homes and bike-share", this project compares Istanbul's districts using the public Inside Airbnb snapshot of the city from 25 September 2026. We ask three questions. First, how do nightly prices differ across districts? Second, which districts concentrate the listings, and how has guest activity in them grown over time? Third, how do districts differ in the kind of supply they offer, entire homes or rooms, single hosts or hosts with many listings, and how is price related to listing size? To answer them we join three Inside Airbnb files: about 27,000 listings, more than 600,000 guest reviews and the boundaries of the 39 districts. Prices are parsed from text, dates are parsed with one explicit rule, duplicates and missing values are handled deliberately, and every decision is recorded in the data card. The results are shown as four static figures, an interactive district chart and a district price map on our GitHub Pages site. Reviews are only a proxy for stays, so the findings describe patterns, not causes.
+## Dataset 1: Inside Airbnb – Istanbul
 
-## Student Names
-
-- Tuğçe Turgut (122203075)
-- Yaren Polat (123203024)
-
-Site: https://bilgi-ie-421.github.io/ie421-2026-2027-1-termproject-group-5/
-
-## Files (Explain each of them with a sentence)
-
-- `data/`: The data card (`data/README.md`); raw downloads go to `data/raw/` (not committed) and cleaned, aggregated tables to `data/processed/`.
-- `scripts/download_data.py`: Downloads the Inside Airbnb Istanbul files (listings, reviews, district boundaries) into `data/raw/`.
-- `scripts/preprocess.py`: Cleans listings (prices, dates, duplicates, outliers), joins reviews to listings, reshapes monthly reviews to one column per district (pivot) and writes the tables in `data/processed/`.
-- `scripts/eda.ipynb`: Exploratory analysis: first contact, one variable at a time, then relationships.
-- `scripts/figures.py`: Produces every figure in `visuals/`.
-- `visuals/`: Figures used on the site: price distribution, district price comparison, monthly reviews in the busiest districts, price vs. capacity, an interactive district chart (plotly) and a district price map (folium).
-- `index.html` and `css/`: The project website served by GitHub Pages.
-- `PROPOSAL.md`: Milestone 1 proposal: problem, datasets and research questions.
-- `AI_USAGE.md`: Every use of AI tools, where it is used and how it was checked.
-- `requirements.txt`: Python libraries the scripts import.
-- `.github/`: The automatic repository check provided with the template.
-
-## How to run (from the repository root)
-
-```
-pip install -r requirements.txt
-python scripts/download_data.py
-python scripts/preprocess.py
-python scripts/figures.py
-jupyter notebook scripts/eda.ipynb
-```
-
-`download_data.py` uses the newest Istanbul snapshot listed on Inside Airbnb; pass `--snapshot YYYY-MM-DD` to reproduce a specific one.
-
-## Key findings
-
-Findings will be added after the analysis is complete (three sentences with numbers in context).
-
-## Hosting
-
-https://bilgi-ie-421.github.io/ie421-2026-2027-1-termproject-group-5/
+- **Source and URL:** Inside Airbnb, https://insideairbnb.com/get-the-data/ (section "Istanbul, Marmara, Turkey"). Three files from the same snapshot:
+  - `listings.csv.gz` – detailed listings
+  - `reviews.csv` – summary reviews (listing id and date only; the detailed `reviews.csv.gz` has the same two columns plus review text, and `preprocess.py` reads either)
+  - `neighbourhoods.geojson` – district boundaries
+- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as stated by Inside Airbnb. **TO CHECK** on the site.
+- **Date accessed:** 2026-11-13. Snapshot dated 25 September 2026 on the site; listings were scraped on 28–29 September 2026 (`last_scraped`).
+- **Time range and granularity:** Listings are a single snapshot, one row per listing. Reviews are one row per review, dated by day, from 2011-05-17 to 2026-09-28.
+- **Size:** listings 27,232 rows × 90 columns; reviews 624,804 rows × 2 columns (17,571 listings); GeoJSON 39 districts.
+- **Columns used:**
+  - `id` (listing identifier), `host_id`, `calculated_host_listings_count` → `host_listings` (active listings of the host)
+  - `neighbourhood_cleansed` → `district` (one of 39 Istanbul districts; join key to the GeoJSON `neighbourhood` property)
+  - `latitude`, `longitude` (degrees, shifted slightly by Inside Airbnb for privacy)
+  - `room_type`, `accommodates` (guests), `bedrooms`
+  - `price` (nightly price as text, e.g. `$4,736.32`; the `$` sign is a display convention, the amounts are in Turkish lira — **TO CHECK** on a few listings on airbnb.com)
+  - `minimum_nights`, `availability_365` (days available in the next year), `number_of_reviews`, `review_scores_rating` (0–5)
+  - `first_review`, `last_review`, `last_scraped` (dates)
+  - reviews: `listing_id`, `date`
+- **Known issues:**
+  - No duplicate listing ids. All 624,804 reviews match a listing in the listings file.
+  - `price` is missing for 2,679 listings (9.8%). Prices are heavy-tailed: median 3,710, 99.5th percentile 55,730, maximum about 5 million (very likely an entry error).
+  - 9,661 listings (35%) have no reviews, so `first_review`, `last_review` and `review_scores_rating` are missing for them. `bedrooms` is missing for 23 listings.
+  - Reviews are a proxy for stays: not every guest writes a review.
+  - Only listings that are still active in the snapshot are included, so reviews of listings that were removed earlier are missing. Growth over time is therefore overstated for early years.
+  - The snapshot month (September 2026) is only partly observed.
+- **Cleaning decisions and why:**
+  - Keep one row per listing `id`, because `id` is the identifier.
+  - Parse `price` into a number; empty or zero prices become missing, not zero, and are left out only of price analyses.
+  - Dates are parsed by one function (`parse_dates` in `preprocess.py`) with the fixed ISO format `YYYY-MM-DD` (`dayfirst=False`); all dates are local calendar dates as published.
+  - Prices above the 99.5th percentile (121 listings) are flagged (`price_outlier`), not deleted: district medians leave them out, the distribution figure keeps them on a log axis.
+  - Reviews are joined to listings on `listing_id = id` (inner join), counted per month and reshaped to one column per district (pivot) for the three districts with most listings plus "Other districts". September 2026 is dropped as a partial month.
+  - District summaries (`groupby`) give the number of listings, median price, share of entire homes and share of multi-listing hosts (hosts with more than one active listing).
+- **How to regenerate:** `python scripts/download_data.py && python scripts/preprocess.py` (to reproduce exactly, use `--snapshot` with the snapshot date in the file URLs on the site).
