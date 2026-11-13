@@ -16,7 +16,7 @@
 <main>
   <section>
     <h2>Why it matters</h2>
-    <p><!-- TO FILL: opening hook in our own words, with one striking number (e.g. how many listings, share of entire homes). --></p>
+    <p>Airbnb has become an important part of Istanbul's accommodation market, but prices and rental activity are not equally distributed across the city. In this project, we analyze Airbnb listings, nightly prices, guest reviews, and accommodation capacity to understand how the market differs between districts. Our goal is to identify key patterns and explore the relationship between location, price, and rental activity.</p>
     <p>We use the Inside Airbnb snapshot of Istanbul (25 September 2026: 27,232 listings, 624,804 reviews, 39 districts) to answer three questions:</p>
     <ol>
       <li>How do nightly prices differ across Istanbul's districts?</li>
@@ -29,15 +29,15 @@
     <h2>1. Prices across the districts</h2>
     <figure>
       <img src="visuals/fig1_price_distribution.png" alt="Histogram of nightly prices on a log scale">
-      <figcaption><strong>Takeaway:</strong> <!-- TO FILL: one sentence with numbers. --></figcaption>
+      <figcaption><strong>Takeaway:</strong> The median nightly price in Istanbul is 3,710 TL, meaning that half of the listings cost less than this amount. Most listings are priced between 1,000 and 10,000 TL, while a small number of extremely expensive listings create a long right tail in the distribution.</figcaption>
     </figure>
     <figure>
       <img src="visuals/fig2_district_prices.png" alt="Median nightly price in the 15 busiest districts with 95% confidence intervals">
-      <figcaption><strong>Takeaway:</strong> <!-- TO FILL --></figcaption>
+      <figcaption><strong>Takeaway:</strong> Nightly prices vary significantly across Istanbul's districts. Şile has the highest median price at approximately 5,000 TL, while Kağıthane has one of the lowest at around 2,300 TL. This means that the median price in Şile is more than twice that of Kağıthane.</figcaption>
     </figure>
     <figure>
       <iframe src="visuals/map_district_prices.html" title="Map of median nightly price by district" loading="lazy"></iframe>
-      <figcaption><strong>Takeaway:</strong> <!-- TO FILL: what the map shows that the bar chart cannot (geography: centre vs. periphery, Bosphorus shores). --></figcaption>
+      <figcaption><strong>Takeaway:</strong> The map shows that some of the highest median nightly prices are found in districts such as Silivri, Adalar, and Şile. These districts are located farther from the city center and include coastal or holiday destinations. However, some have relatively few listings, so their median prices should be interpreted carefully.</figcaption>
     </figure>
   </section>
 
@@ -45,7 +45,7 @@
     <h2>2. Where the listings and guests are</h2>
     <figure>
       <img src="visuals/fig3_monthly_reviews.png" alt="Monthly reviews over time in Beyoglu, Fatih, Sisli and all other districts">
-      <figcaption><strong>Takeaway:</strong> <!-- TO FILL --></figcaption>
+      <figcaption><strong>Takeaway:</strong> Airbnb review activity has increased significantly over time, especially after the sharp decline in 2020 during the COVID-19 pandemic. Beyoğlu stands out as the most active district, receiving approximately seven times more reviews in 2025 than in 2019. This suggests a strong increase in guest activity in the district.</figcaption>
     </figure>
   </section>
 
@@ -53,22 +53,22 @@
     <h2>3. What kind of supply each district offers</h2>
     <figure>
       <img src="visuals/fig4_price_vs_capacity.png" alt="Box plots of nightly price by number of guests">
-      <figcaption><strong>Takeaway:</strong> <!-- TO FILL --></figcaption>
+      <figcaption><strong>Takeaway:</strong> Listings that accommodate more guests generally have higher nightly prices. The median price for a one-guest listing is approximately 1,200 TL, compared with around 2,800 TL for a two-guest listing. A six-guest listing costs about 2.4 times as much as a two-guest listing, showing that prices increase with capacity but not proportionally.</figcaption>
     </figure>
     <figure>
       <iframe src="visuals/interactive_districts.html" title="Interactive scatter of districts: listings vs. median price" loading="lazy"></iframe>
-      <figcaption>Hover a district to see its listings, median price and share of entire homes. <strong>Takeaway:</strong> <!-- TO FILL --></figcaption>
+      <figcaption>Hover a district to see its listings, median price and share of entire homes. <strong>Takeaway:</strong> Districts with more Airbnb listings are not necessarily the most expensive. The chart shows that listing volume and median nightly price do not have a simple relationship. Differences in the share of entire-home listings may also help explain variations between districts.</figcaption>
     </figure>
   </section>
 
   <section>
     <h2>Conclusion</h2>
-    <p><!-- TO FILL: a conclusion that takes a side, in our own words. --></p>
+    <p>Our analysis shows that Istanbul's Airbnb market varies considerably across districts. Nightly prices depend on factors such as location and accommodation capacity, while guest activity is concentrated in popular areas such as Beyoğlu. We also found that districts with more listings are not always more expensive. Overall, the results highlight the importance of considering multiple factors when comparing Airbnb markets across Istanbul.</p>
   </section>
 
   <section>
     <h2>Limitations and ethics</h2>
-    <p><!-- TO FILL in our own words. Points to cover: reviews are a proxy for stays; listed price is not the price paid; one snapshot; coordinates are anonymised; only listings still active in the snapshot are included; host identities are not shown. --></p>
+    <p>This analysis is based on publicly available Inside Airbnb data from September 25, 2026. Listed prices may not reflect actual booking prices, and reviews do not represent every guest stay. Some districts have relatively few listings, which can make their median prices less reliable. In addition, the dataset does not fully capture the social and economic effects of short-term rentals on local residents. Therefore, our findings should be interpreted as descriptive patterns rather than causal relationships.</p>
   </section>
 
   <section>
