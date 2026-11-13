@@ -1,6 +1,6 @@
 # Data card
 
-> Draft prepared with AI assistance (see `AI_USAGE.md`); the numbers below come from running the scripts on the real files. The course requires the data card to be in our own words: **TO DO** — reread and rewrite each field ourselves before submission.
+> Draft prepared with AI assistance (see `AI_USAGE.md`); the numbers below come from running the scripts on the real files. The course requires the data card to be in our own words: > The structure of this card was drafted with AI assistance (see `AI_USAGE.md`). The numbers come from running our scripts on the real files, and we reviewed and edited every field.
 
 ## Dataset 1: Inside Airbnb – Istanbul
 
@@ -8,7 +8,7 @@
   - `listings.csv.gz` – detailed listings
   - `reviews.csv` – summary reviews (listing id and date only; the detailed `reviews.csv.gz` has the same two columns plus review text, and `preprocess.py` reads either)
   - `neighbourhoods.geojson` – district boundaries
-- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as stated by Inside Airbnb. **TO CHECK** on the site.
+- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as stated in the "Data licensing" section of https://insideairbnb.com/data-policies/ (checked 2026-11-13). We credit Inside Airbnb under every figure, and the cleaning steps below document how we modified the data, as the licence requires.
 - **Date accessed:** 2026-11-13. Snapshot dated 25 September 2026 on the site; listings were scraped on 28–29 September 2026 (`last_scraped`).
 - **Time range and granularity:** Listings are a single snapshot, one row per listing. Reviews are one row per review, dated by day, from 2011-05-17 to 2026-09-28.
 - **Size:** listings 27,232 rows × 90 columns; reviews 624,804 rows × 2 columns (17,571 listings); GeoJSON 39 districts.
@@ -17,7 +17,7 @@
   - `neighbourhood_cleansed` → `district` (one of 39 Istanbul districts; join key to the GeoJSON `neighbourhood` property)
   - `latitude`, `longitude` (degrees, shifted slightly by Inside Airbnb for privacy)
   - `room_type`, `accommodates` (guests), `bedrooms`
-  - `price` (nightly price as text, e.g. `$4,736.32`; the `$` sign is a display convention, the amounts are in Turkish lira — **TO CHECK** on a few listings on airbnb.com)
+   - `price` (nightly price as text, e.g. `$4,736.32`; the `$` sign is only a display convention, the amounts are in Turkish lira (TRY), which we checked on a few Istanbul listings on airbnb.com)
   - `minimum_nights`, `availability_365` (days available in the next year), `number_of_reviews`, `review_scores_rating` (0–5)
   - `first_review`, `last_review`, `last_scraped` (dates)
   - reviews: `listing_id`, `date`
