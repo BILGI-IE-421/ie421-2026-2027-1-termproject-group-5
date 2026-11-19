@@ -1,3 +1,4 @@
+
 # AI usage statement
 | Date | Tool | Task (what you asked) | Where it is used (file/section) | What you verified and how |
 |---|---|---|---|---|
@@ -13,3 +14,5 @@
 | 2026-11-13 | Claude (Claude Code) | Suggest draft takeaway sentences and the numbers behind them. | index.html (figure takeaways, introduction) | Rewrote the takeaways, conclusion and limitations in our own words and checked each number (median 3,710; 2.4×; 7×) against the notebook. |
 | 2026-11-13 | GitHub Copilot | Suggest commit messages when uploading files on GitHub. | Commit history | Read each message before committing. |
 | 2026-11-19 | Claude (Claude Code) | Replace fig4 with a price vs guest rating chart | scripts/figures.py, visuals/fig4_price_vs_rating.png | Checked the medians and the Spearman value against the notebook; wrote the heading and takeaway ourselves |
+| 2026-11-19 | Claude (Claude Code) | Fix the download script to a fixed snapshot and pin library versions, after our instructor's feedback | scripts/download_data.py, scripts/preprocess.py, requirements.txt | Re-ran the pipeline and checked that the processed tables did not change |
+| 2026-11-19 | Claude (Claude Code) | Review our own problem statement, questions and README abstract (word count, consistency, number checks); we wrote the text ourselves | PROPOSAL.md, README.md, index.html | Rewrote the parts it flagged in our own words |
