@@ -6,7 +6,7 @@
 
 - **Source and URL:** Inside Airbnb, https://insideairbnb.com/get-the-data/ (section "Istanbul, Marmara, Turkey"). Three files from the same snapshot:
   - `listings.csv.gz` – detailed listings
-   - `reviews.csv` – summary reviews (listing id and date only; the detailed `reviews.csv.gz` has the same two columns plus review text, and `preprocess.py` reads either)
+     - `reviews.csv` – summary reviews (listing id and date only), downloaded by `download_data.py` from the same snapshot
   - `neighbourhoods.geojson` – district boundaries
 - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as stated in the "Data licensing" section of https://insideairbnb.com/data-policies/ (checked 2026-11-13). We credit Inside Airbnb under every figure, and the cleaning steps below document how we modified the data, as the licence requires.
 - **Date accessed:** 2026-11-13. Snapshot dated 25 September 2026 on the site; listings were scraped on 28–29 September 2026 (`last_scraped`).
