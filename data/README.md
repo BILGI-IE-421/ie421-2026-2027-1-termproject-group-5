@@ -1,12 +1,12 @@
 # Data card
 
-> Draft prepared with AI assistance (see `AI_USAGE.md`); the numbers below come from running the scripts on the real files. The course requires the data card to be in our own words: > The structure of this card was drafted with AI assistance (see `AI_USAGE.md`). The numbers come from running our scripts on the real files, and we reviewed and edited every field.
+> The structure of this card was drafted with AI assistance (see `AI_USAGE.md`). The numbers come from running our scripts on the real files, and we reviewed and edited every field.
 
 ## Dataset 1: Inside Airbnb – Istanbul
 
 - **Source and URL:** Inside Airbnb, https://insideairbnb.com/get-the-data/ (section "Istanbul, Marmara, Turkey"). Three files from the same snapshot:
   - `listings.csv.gz` – detailed listings
-  - `reviews.csv` – summary reviews (listing id and date only; the detailed `reviews.csv.gz` has the same two columns plus review text, and `preprocess.py` reads either)
+   - `reviews.csv` – summary reviews (listing id and date only; the detailed `reviews.csv.gz` has the same two columns plus review text, and `preprocess.py` reads either)
   - `neighbourhoods.geojson` – district boundaries
 - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0), as stated in the "Data licensing" section of https://insideairbnb.com/data-policies/ (checked 2026-11-13). We credit Inside Airbnb under every figure, and the cleaning steps below document how we modified the data, as the licence requires.
 - **Date accessed:** 2026-11-13. Snapshot dated 25 September 2026 on the site; listings were scraped on 28–29 September 2026 (`last_scraped`).
@@ -17,7 +17,7 @@
   - `neighbourhood_cleansed` → `district` (one of 39 Istanbul districts; join key to the GeoJSON `neighbourhood` property)
   - `latitude`, `longitude` (degrees, shifted slightly by Inside Airbnb for privacy)
   - `room_type`, `accommodates` (guests), `bedrooms`
-   - `price` (nightly price as text, e.g. `$4,736.32`; the `$` sign is only a display convention, the amounts are in Turkish lira (TRY), which we checked on a few Istanbul listings on airbnb.com)
+  - `price` (nightly price as text, e.g. `$4,736.32`; the `$` sign is only a display convention, the amounts are in Turkish lira (TRY), which we checked on a few Istanbul listings on airbnb.com)
   - `minimum_nights`, `availability_365` (days available in the next year), `number_of_reviews`, `review_scores_rating` (0–5)
   - `first_review`, `last_review`, `last_scraped` (dates)
   - reviews: `listing_id`, `date`
@@ -35,5 +35,5 @@
   - Prices above the 99.5th percentile (121 listings) are flagged (`price_outlier`), not deleted: district medians leave them out, the distribution figure keeps them on a log axis.
   - Reviews are joined to listings on `listing_id = id` (inner join), counted per month and reshaped to one column per district (pivot) for the three districts with most listings plus "Other districts". September 2026 is dropped as a partial month.
   - District summaries (`groupby`) give the number of listings, median price, share of entire homes and share of multi-listing hosts (hosts with more than one active listing).
-- **How to regenerate:** `python scripts/download_data.py && python scripts/preprocess.py` (to reproduce exactly, use `--snapshot` with the snapshot date in the file URLs on the site).
+- **How to regenerate:** `python scripts/download_data.py && python scripts/preprocess.py`. The snapshot date (2026-09-25) is fixed in `download_data.py`, so every run uses the same data. Inside Airbnb keeps about 12 months of snapshots online; after that the files must be requested from Inside Airbnb.
 
