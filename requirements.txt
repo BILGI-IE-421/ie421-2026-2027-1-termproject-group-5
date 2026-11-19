@@ -1,10 +1,10 @@
-pandas>=2.2
-numpy>=1.26
-matplotlib>=3.8
-seaborn>=0.13
-plotly>=5.20
-bokeh>=3.4
-folium>=0.16
-requests>=2.31
-jupyter>=1.0
-scipy>=1.11
+# Exact versions, so the scripts give the same results on every machine.
+pandas==3.0.5
+numpy==2.5.3
+matplotlib==3.11.2
+seaborn==0.13.2
+plotly==7.1.0
+folium==0.20.0
+requests==2.34.2
+scipy==1.18.1
+jupyter==1.1.1
