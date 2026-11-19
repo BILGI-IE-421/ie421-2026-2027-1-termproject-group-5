@@ -4,7 +4,7 @@ Static (PNG):
     fig1_price_distribution.png   distribution
     fig2_district_prices.png      comparison across categories
     fig3_monthly_reviews.png      trend over time (busiest districts)
-    fig4_price_vs_capacity.png    relationship
+    fig4_price_vs_rating.png      relationship (price vs guest rating)
 Interactive (HTML):
     interactive_districts.html    plotly scatter of districts
 Advanced (HTML):
@@ -120,23 +120,29 @@ def fig_monthly_reviews(monthly, source):
     plt.close(fig)
 
 
-def fig_price_vs_capacity(listings, source):
-    data = listings[listings["price"].notna() & listings["accommodates"].between(1, 16)].copy()
-    data["guests"] = data["accommodates"].clip(upper=8).astype(int).astype(str).replace("8", "8+")
-    order = [str(i) for i in range(1, 8)] + ["8+"]
-    groups = [data.loc[data["guests"] == g, "price"] for g in order]
-    ratio = groups[5].median() / groups[1].median() if len(groups[1]) and len(groups[5]) else float("nan")
+def fig_price_vs_rating(listings, source):
+    """Price by guest-rating group. Most ratings are between 4.5 and 5, so a plain
+    scatter would be one dense blob; groups with box plots show the medians clearly."""
+    data = listings[listings["price"].notna() & ~listings["price_outlier"]
+                    & listings["review_scores_rating"].notna()].copy()
+    edges = [0, 4.5, 4.7, 4.9, 5.0]
+    labels = ["below 4.5", "4.5–4.7", "4.7–4.9", "4.9–5.0"]
+    data["rating_group"] = pd.cut(data["review_scores_rating"], edges, labels=labels, include_lowest=True)
+    groups = [data.loc[data["rating_group"] == g, "price"] for g in labels]
+    tick_labels = [f"{g}\n(n = {len(v):,})" for g, v in zip(labels, groups)]
+    rho = data["price"].corr(data["review_scores_rating"], method="spearman")
 
     fig, ax = plt.subplots(figsize=(8, 4.5))
-    ax.boxplot(groups, tick_labels=order, showfliers=False,
+    ax.boxplot(groups, tick_labels=tick_labels, showfliers=False,
                medianprops={"color": ORANGE, "linewidth": 2}, boxprops={"color": BLUE})
     ax.set_yscale("log")
-    ax.set_xlabel("Guests the listing accommodates")
+    ax.set_xlabel("Guest rating (out of 5); listings without reviews are left out")
     ax.set_ylabel(PRICE_LABEL + ", log scale")
-    ax.set_title(f"A 6-guest listing costs {ratio:.1f}× a 2-guest listing at the median", loc="left")
+    ax.set_title(f"Higher-rated listings cost a little more, but the link is weak (Spearman {rho:.2f})",
+                 loc="left")
     add_source(fig, source)
     fig.tight_layout(rect=(0, 0.04, 1, 1))
-    fig.savefig(VISUALS / "fig4_price_vs_capacity.png")
+    fig.savefig(VISUALS / "fig4_price_vs_rating.png")
     plt.close(fig)
 
 
@@ -202,7 +208,7 @@ def main():
     fig_price_distribution(listings, SOURCE_AIRBNB.format(snapshot=snapshot))
     fig_district_prices(listings, SOURCE_AIRBNB.format(snapshot=snapshot))
     fig_monthly_reviews(monthly, SOURCE_AIRBNB.format(snapshot=snapshot))
-    fig_price_vs_capacity(listings, SOURCE_AIRBNB.format(snapshot=snapshot))
+    fig_price_vs_rating(listings, SOURCE_AIRBNB.format(snapshot=snapshot))
     interactive_districts(districts, snapshot)
     map_district_prices(districts, snapshot)
     print(f"figures written to {VISUALS.relative_to(ROOT)}/")
