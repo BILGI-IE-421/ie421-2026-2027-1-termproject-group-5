@@ -41,7 +41,7 @@ python scripts/figures.py
 jupyter notebook scripts/eda.ipynb
 ```
 
-`download_data.py` uses the newest Istanbul snapshot listed on Inside Airbnb; pass `--snapshot YYYY-MM-DD` to reproduce a specific one.
+`download_data.py` always downloads the same Inside Airbnb snapshot (2026-09-25), so the results do not change between runs.
 
 ## Key findings
 
