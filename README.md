@@ -2,7 +2,13 @@
 
 ## Airbnb in Istanbul: Comparing the Districts
 
-Short-term rentals shape how a city is lived in: they take homes away from long-term residents and bring visitors into residential streets. Under the theme "Cities We Live In: homes and bike-share", this project compares Istanbul's districts using the public Inside Airbnb snapshot of the city from 25 September 2026. We ask three questions. First, how do nightly prices differ across districts? Second, which districts concentrate the listings, and how has guest activity in them grown over time? Third, how do districts differ in the kind of supply they offer, entire homes or rooms, single hosts or hosts with many listings, and how is price related to listing size? To answer them we join three Inside Airbnb files: about 27,000 listings, more than 600,000 guest reviews and the boundaries of the 39 districts. Prices are parsed from text, dates are parsed with one explicit rule, duplicates and missing values are handled deliberately, and every decision is recorded in the data card. The results are shown as four static figures, an interactive district chart and a district price map on our GitHub Pages site. Reviews are only a proxy for stays, so the findings describe patterns, not causes.
+Airbnb has become a popular accommodation option in Istanbul, especially in areas visited by tourists. Under the theme "Cities We Live In: homes and bike-share", our project focuses on comparing Airbnb activity across different districts of Istanbul. We want to understand how prices, listing numbers, and guest ratings vary across the city.
+
+Our project aims to answer three main questions. First, how do Airbnb prices vary between different districts in Istanbul? Second, which districts have the most Airbnb listings, and how has guest activity changed over time in these areas? Third, is there a relationship between Airbnb prices and guest ratings?
+
+To answer these questions, we use publicly available data from Inside Airbnb, including listing information, guest reviews, and district boundaries. The dataset provides details such as nightly prices, locations, review dates, and guest ratings. We will clean and organize the data before analyzing it and creating different visualizations, including charts and maps.
+
+Through this project, we hope to identify patterns in Airbnb prices, listing distribution, and review activity. Our findings will help us better understand how Airbnb activity differs between Istanbul's districts.
 
 ## Student Names
 
