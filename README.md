@@ -45,7 +45,11 @@ jupyter notebook scripts/eda.ipynb
 
 ## Key findings
 
-Findings will be added after the analysis is complete (three sentences with numbers in context).
+1. Among the 15 districts with the most Airbnb listings, Şile has the highest median nightly price at 5,000 TL, which is more than twice Kağıthane's median price of 2,334 TL.
+
+2. Beyoğlu has the most Airbnb listings, with 7,447 out of 27,232 listings (27%), and its annual guest review count increased from 10,079 in 2019 to 71,263 in 2025, approximately seven times higher.
+
+3. Airbnb prices and guest ratings have a weak positive relationship (Spearman correlation = 0.17), with listings rated below 4.5 having a median nightly price of 3,100 TL, compared to approximately 4,450 TL for listings rated above 4.7.
 
 ## Hosting
 
