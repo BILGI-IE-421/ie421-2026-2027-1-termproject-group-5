@@ -12,3 +12,4 @@
 | 2026-11-13 | Claude (Claude Code) | Check that the uploaded files are Istanbul data (the first upload was another city) and run the pipeline on them. | data/processed/, visuals/ | Looked at every figure on the site and compared the titles with the notebook numbers. |
 | 2026-11-13 | Claude (Claude Code) | Suggest draft takeaway sentences and the numbers behind them. | index.html (figure takeaways, introduction) | Rewrote the takeaways, conclusion and limitations in our own words and checked each number (median 3,710; 2.4×; 7×) against the notebook. |
 | 2026-11-13 | GitHub Copilot | Suggest commit messages when uploading files on GitHub. | Commit history | Read each message before committing. |
+| 2026-11-19 | Claude (Claude Code) | Replace fig4 with a price vs guest rating chart | scripts/figures.py, visuals/fig4_price_vs_rating.png | Checked the medians and the Spearman value against the notebook; wrote the heading and takeaway ourselves |
