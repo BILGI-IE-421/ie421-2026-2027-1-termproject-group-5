@@ -5,7 +5,7 @@
 **Members:** Tuğçe Turgut (122203075) · Yaren Polat (123203024)
 
 ## The problem
-Short-term rentals change how a city is lived in: they take homes off the long-term market and bring tourists into residential neighbourhoods. We want to compare Istanbul's districts: where Airbnb listings are concentrated, how nightly prices differ, how fast guest activity has grown, and who offers the listings. Knowing this shows which districts carry most of the tourism footprint.
+Airbnb has become a popular accommodation option in Istanbul, especially in areas visited by tourists. We want to compare Istanbul's districts by looking at where Airbnb listings are located, how nightly prices differ, how guest activity has changed over time, and whether prices are related to guest ratings. This will help us understand how Airbnb activity differs across Istanbul.
 
 ## The data
 | Dataset | Link | What is in it |
@@ -15,6 +15,6 @@ Short-term rentals change how a city is lived in: they take homes off the long-t
 | Inside Airbnb – Istanbul districts (`neighbourhoods.geojson`) | https://insideairbnb.com/get-the-data/ | Boundaries of Istanbul's 39 districts (GeoJSON), joined to listings on the district name for the map. |
 
 ## Our questions
-1. How do nightly prices differ across Istanbul's districts?
-2. Which districts concentrate the listings, and how has guest activity in them grown over time?
-3. How do districts differ in the kind of supply (entire homes vs. rooms, single vs. multi-listing hosts), and how is price related to listing size?
+1. How do Airbnb prices vary between different districts in Istanbul?
+2. Which districts in Istanbul have the most Airbnb listings, and how has guest activity changed over time in these districts?
+3. Is there a relationship between Airbnb prices and guest ratings in Istanbul?
