@@ -1,7 +1,7 @@
 """Clean, join and reshape the raw files into data/processed/.
 
 Inputs (from scripts/download_data.py, in data/raw/):
-    listings.csv.gz, reviews.csv.gz, SNAPSHOT.txt
+    listings.csv.gz, reviews.csv, SNAPSHOT.txt
 Outputs (in data/processed/):
     listings_clean.csv            one row per listing, analysis columns only
     district_summary.csv          one row per district (groupby)
@@ -92,7 +92,7 @@ def monthly_reviews_by_district(listings, snapshot_date, n_lines=3):
     The three districts with most listings get their own column; all other
     districts are summed into "Other districts", so a line chart has at most four lines.
     """
-    reviews = pd.read_csv(RAW_DIR / "reviews.csv.gz", usecols=["listing_id", "date"])
+    reviews = pd.read_csv(RAW_DIR / "reviews.csv", usecols=["listing_id", "date"])
     reviews["date"] = parse_dates(reviews["date"])
     reviews = reviews.dropna(subset=["date"])
 
